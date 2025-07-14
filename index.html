@@ -4,395 +4,155 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grupo de Trabajo de Seguridad y Salud Laboral</title>
-    <!-- Google Fonts: Roboto for a clean and modern look -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS for a utility-first CSS framework -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter for a clean, modern look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        /* CSS Variables for easy theme customization */
-        :root {
-            --primary-color: #0056b3; /* Darker blue for accents and headers */
-            --secondary-color: #e9ecef; /* Light grey for alternating section backgrounds */
-            --text-color: #333; /* Dark grey for main text */
-            --white: #fff; /* White for backgrounds and text on dark elements */
-            --light-blue: #007bff; /* Original blue for links/buttons */
-            --accent-color: #28a745; /* A green accent for the prominent button */
-            --accent-color-dark: #218838; /* Darker green for hover */
-        }
-
-        /* Basic body styling */
+        /* Custom base styles */
         body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--white);
-            color: var(--text-color);
-            line-height: 1.6;
-            overflow-x: hidden; /* Prevent horizontal scroll */
-        }
-
-        /* Container for content centering and max-width */
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px 0;
-        }
-
-        /* Header styling */
-        header {
-            background-color: var(--primary-color);
-            color: var(--white);
-            padding: 1.5rem 0;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            border-bottom-left-radius: 10px;
-            border-bottom-right-radius: 10px;
-            display: flex; /* Use flexbox for alignment */
-            flex-direction: column; /* Stack items vertically */
-            align-items: center; /* Center items horizontally */
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 2.8rem;
-            font-weight: 700;
-        }
-
-        header p {
-            font-size: 1.1rem;
-            margin-top: 10px;
-            margin-bottom: 20px; /* Add margin below paragraph */
-        }
-
-        /* New button style for header - Made more elegant and prominent */
-        .header-button {
-            display: inline-block;
-            background: linear-gradient(45deg, var(--accent-color), var(--accent-color-dark)); /* Gradient background */
-            color: var(--white);
-            padding: 12px 25px; /* Slightly larger padding */
-            border-radius: 8px;
-            text-decoration: none;
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Add box-shadow to transition */
-            font-weight: 700;
-            font-size: 1.1rem; /* Slightly larger font size */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* More pronounced shadow */
-            margin-top: 10px; /* Space from paragraph */
-            border: none; /* Remove default border */
-            cursor: pointer; /* Indicate it's clickable */
-        }
-
-        .header-button:hover {
-            background: linear-gradient(45deg, var(--accent-color-dark), var(--accent-color)); /* Reverse gradient on hover */
-            transform: translateY(-3px); /* More pronounced lift effect */
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Darker shadow on hover */
-        }
-
-        /* Section styling */
-        section {
-            padding: 60px 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        /* Alternating background color for sections */
-        section:nth-of-type(even) {
-            background-color: var(--secondary-color);
-        }
-
-        /* Heading styling for sections */
-        h2 {
-            text-align: center;
-            margin-bottom: 40px;
-            color: var(--primary-color);
-            font-size: 2.2rem;
-            font-weight: 700;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        h2::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            bottom: 0;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: var(--light-blue);
-            border-radius: 2px;
-        }
-
-        /* Styling for individual items (meetings, files, events) */
-        .meeting-item, .file-item, .event-item {
-            background-color: var(--white);
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            padding: 25px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .meeting-item:hover, .file-item:hover, .event-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-        }
-
-        .meeting-item strong, .event-item strong {
-            font-size: 1.4rem;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-
-        .meeting-item p, .file-item p, .event-item p {
-            margin: 8px 0;
-            font-size: 1.05rem;
-        }
-
-        /* Styling for links/buttons */
-        .meeting-item a, .file-item a, .event-item a {
-            display: inline-block;
-            background-color: var(--light-blue);
-            color: var(--white);
-            padding: 12px 25px;
-            border-radius: 8px;
-            text-decoration: none;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            margin-top: 15px;
-            font-weight: 700;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .meeting-item a:hover, .file-item a:hover, .event-item a:hover {
-            background-color: var(--primary-color);
-            transform: translateY(-2px);
-        }
-
-        /* Grid layout for sections */
-        .meetings-grid, .files-grid, .events-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            justify-content: center; /* Center items in the grid */
-            align-items: stretch; /* Make items the same height */
-        }
-
-        /* Specific styling for the Google Drive link item */
-        .file-item {
-            grid-column: 1 / -1; /* Make it span all columns */
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .file-item p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin-bottom: 20px;
-        }
-
-        /* Footer styling */
-        footer {
-            background-color: var(--primary-color);
-            color: var(--white);
-            text-align: center;
-            padding: 1.5rem 0;
-            margin-top: 50px;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2.2rem;
-            }
-
-            h2 {
-                font-size: 1.8rem;
-            }
-
-            .container {
-                width: 95%;
-            }
-
-            section {
-                padding: 40px 0;
-            }
-
-            .meeting-item, .file-item, .event-item {
-                padding: 20px;
-            }
-
-            .meeting-item strong, .event-item strong {
-                font-size: 1.2rem;
-            }
-
-            .meeting-item p, .file-item p, .event-item p {
-                font-size: 1rem;
-            }
-
-            .meeting-item a, .file-item a, .event-item a {
-                padding: 10px 20px;
-                font-size: 0.9rem;
-            }
-
-            .header-button {
-                padding: 10px 20px;
-                font-size: 1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            header h1 {
-                font-size: 1.8rem;
-            }
-
-            h2 {
-                font-size: 1.5rem;
-            }
-
-            .meetings-grid, .files-grid, .events-grid {
-                grid-template-columns: 1fr; /* Single column on very small screens */
-            }
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Use a light gray background (bg-slate-50) */
         }
     </style>
 </head>
-<body>
-    <header>
-        <div class="container">
-            <!-- Logo added here with onerror for fallback -->
-            <img src="Logo CIER-PhotoRoom (1).png" alt="Logo CIER" class="header-logo" onerror="this.onerror=null; this.src='https://placehold.co/150x150/cccccc/333333?text=Logo+CIER';">
-            <h1>Grupo en Seguridad y Salud en el Trabajo</h1>
-            <p>Mantente al día con nuestras reuniones, documentos y eventos importantes.</p>
-            <!-- New button for "Integrantes del Grupo" linking to Google Drive -->
-            <a href="https://drive.google.com/drive/folders/1jJg5MwPTiFq07g3bQxmtJ5IkHgGHT6tX?usp=drive_link" target="_blank" class="header-button" rel="noopener noreferrer">Integrantes del Grupo y Objetivos</a>
+<body class="text-slate-800">
+
+    <!-- Header Section -->
+    <header class="bg-white border-b border-slate-200">
+        <div class="container mx-auto px-6 py-6 text-center">
+            <!-- Logo with fallback -->
+            <img src="Logo CIER-PhotoRoom (1).png" 
+                 alt="Logo CIER" 
+                 class="mx-auto mb-4 h-20 w-20 object-contain" 
+                 onerror="this.onerror=null; this.src='https://placehold.co/150x150/e2e8f0/334155?text=Logo';">
+            
+            <h1 class="text-3xl md:text-4xl font-bold text-slate-900">Grupo en Seguridad y Salud en el Trabajo</h1>
+            <p class="mt-2 text-md text-slate-600 max-w-2xl mx-auto">Mantente al día con nuestras reuniones, documentos y eventos importantes.</p>
+            
+            <!-- Main Call to Action Button -->
+            <a href="https://drive.google.com/drive/folders/1jJg5MwPTiFq07g3bQxmtJ5IkHgGHT6tX?usp=drive_link" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="mt-6 inline-block bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-blue-700 transition-colors duration-300">
+               Integrantes y Objetivos
+            </a>
         </div>
     </header>
 
-    <section id="meetings">
-        <div class="container">
-            <h2>🗓️ Próximas Reuniones Virtuales</h2>
-            <div class="meetings-grid" id="meetings-list">
+    <!-- Main Content Area -->
+    <main class="container mx-auto px-6 py-12">
+
+        <!-- Meetings Section -->
+        <section id="meetings" class="mb-16">
+            <h2 class="text-2xl font-bold text-center text-slate-900 mb-8">🗓️ Próximas Reuniones</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="meetings-list">
                 <!-- Meeting items will be loaded here by JavaScript -->
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="events">
-        <div class="container">
-            <h2>⭐ Fechas Importantes y Actividades</h2>
-            <div class="events-grid" id="events-list">
+        <!-- Events Section -->
+        <section id="events" class="mb-16">
+            <h2 class="text-2xl font-bold text-center text-slate-900 mb-8">⭐ Fechas Importantes</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="events-list">
                 <!-- Event items will be loaded here by JavaScript -->
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="files">
-        <div class="container">
-            <h2>📂 Archivos Importantes</h2>
-            <div class="files-grid" id="files-list">
-                <div class="file-item">
-                    <p>Accede a todos los documentos y materiales de trabajo en nuestra carpeta compartida de Google Drive. Aquí podrás descargar y subir archivos. Para subir archivos debes iniciar sesión con una cuenta Gmail - One Drive</p>
-                    <!-- Google Drive link provided by the user -->
-                    <a href="https://drive.google.com/drive/folders/1jJg5MwPTiFq07g3bQxmtJ5IkHgGHT6tX?usp=drive_link" target="_blank" rel="noopener noreferrer">Ir a la Carpeta de Google Drive</a>
-                </div>
+        <!-- Files Section -->
+        <section id="files">
+            <h2 class="text-2xl font-bold text-center text-slate-900 mb-8">📂 Archivos del Grupo</h2>
+            <div class="bg-white rounded-lg shadow-sm border border-slate-200 p-8 text-center max-w-3xl mx-auto">
+                <p class="text-slate-600 mb-6">Accede a todos los documentos y materiales de trabajo en nuestra carpeta compartida. Para subir archivos debes iniciar sesión con una cuenta de Google.</p>
+                <a href="https://drive.google.com/drive/folders/1jJg5MwPTiFq07g3bQxmtJ5IkHgGHT6tX?usp=drive_link" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="inline-block bg-slate-800 text-white font-semibold px-6 py-3 rounded-lg hover:bg-slate-900 transition-colors duration-300">
+                   Ir a la Carpeta Compartida
+                </a>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <footer>
-        <div class="container">
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-white mt-16 border-t border-slate-200">
+        <div class="container mx-auto px-6 py-6 text-center text-slate-500 text-sm">
             <p>&copy; 2025 Grupo de Trabajo de Seguridad y Salud Laboral. Todos los derechos reservados.</p>
         </div>
     </footer>
 
     <script>
         // Configuration object for easy data management
-        // All meeting links and event details can be updated here.
         const config = {
             meetings: [
                 {
                     date: "15 de Julio de 2025",
                     time: "11:00 AM (UY)",
                     title: "Reunión Inicial de Planificación",
-                    // IMPORTANT: Replace this with your actual Microsoft Teams meeting link
                     link: "https://teams.microsoft.com/l/meetup-join/19%3ameeting_OTMxNDNjNjAtNzg3NC00OWJjLTg5YzUtMjEyYjgzNzJjYzg2%40thread.v2/0?context=%7b%22Tid%22%3a%22db7f91fb-2e19-4d23-8cb6-0694fd54c0d5%22%2c%22Oid%22%3a%22610cb4db-a572-400d-8b12-d0243d91d963%22%7d"
                 },
                 {
                     date: "Fecha a definir",
                     time: "11:00 AM (UY)",
                     title: "Propósito a definir",
-                    // IMPORTANT: Replace this with your actual Microsoft Teams meeting link
                     link: "https://teams.microsoft.com/l/meetup-join/19%3ameeting_..."
                 },
                 {
                     date: "Fecha a definir",
                     time: "11:00 AM (UY)",
                     title: "Propósito",
-                    // IMPORTANT: Replace this with your actual Microsoft Teams meeting link
                     link: "https://teams.microsoft.com/l/meetup-join/19%3ameeting_..."
                 }
                 // Add more meeting objects here as needed
-                /*
-                ,
-                {
-                    date: "DD de Mes de AAAA",
-                    time: "HH:MM AM/PM (UY)",
-                    title: "Título de la Nueva Reunión",
-                    link: "https://teams.microsoft.com/l/meetup-join/..."
-                }
-                */
             ],
             events: [
                 {
-                    date: "19 de Agosto de 2025, hora 12 AM (UY)",
-                    title: "Zoom Ecuacier - CIER - Encuesta Regional CIER - SST Edición 2025",
-                    description: "Actividad especial de concientización y charlas informativas."
+                    date: "19 de Agosto de 2025, 12:00 PM (UY)",
+                    title: "Encuesta Regional CIER - SST Edición 2025",
+                    description: "Actividad especial de concientización y charlas informativas vía Zoom Ecuacier - CIER."
                 },
                 {
                     date: "Marzo 2026",
                     title: "Encuesta Regional SST CIER Edición 2026",
-                    description: "Difusión, inicio, recogida de información y resultados"
+                    description: "Difusión, inicio, recogida de información y presentación de resultados."
                 },
                 {
-                    date: "28 de abril de 2026",
-                    title: "Día Mundial de la Seguridad y la Salud en el Trabajo",
-                    description: "Día de la celebración del día de la SST"
+                    date: "28 de Abril de 2026",
+                    title: "Día Mundial de la SST",
+                    description: "Celebración del Día Mundial de la Seguridad y la Salud en el Trabajo."
                 }
                 // Add more event objects here as needed
-                /*
-                ,
-                {
-                    date: "DD de Mes de AAAA",
-                    title: "Título del Nuevo Evento",
-                    description: "Descripción detallada del evento."
-                }
-                */
-            ],
-            // Google Drive link (already set in HTML, but kept here for consistency if dynamic update was needed)
-            googleDriveLink: "https://drive.google.com/drive/folders/1jJg5MwPTiFq07g3bQxmtJ5IkHgGHT6tX?usp=drive_link"
+            ]
         };
 
         /**
          * Dynamically loads meeting items from the config object into the HTML.
+         * Items are styled with Tailwind CSS classes.
          */
         function loadMeetings() {
             const meetingsList = document.getElementById('meetings-list');
-            meetingsList.innerHTML = ''; // Clear existing content to prevent duplicates on re-load
+            if (!meetingsList) return;
+            meetingsList.innerHTML = ''; // Clear existing content
 
             config.meetings.forEach(meeting => {
                 const meetingItem = document.createElement('div');
-                meetingItem.classList.add('meeting-item');
+                // Using Tailwind classes for a compact, card-based design
+                meetingItem.className = 'bg-white rounded-lg shadow-sm border border-slate-200 p-6 flex flex-col';
                 meetingItem.innerHTML = `
-                    <strong>${meeting.title}</strong>
-                    <p>Fecha: ${meeting.date}</p>
-                    <p>Hora: ${meeting.time}</p>
-                    <a href="${meeting.link}" target="_blank" rel="noopener noreferrer">Unirse a la Reunión</a>
+                    <h3 class="font-bold text-lg text-slate-900 mb-2">${meeting.title}</h3>
+                    <p class="text-slate-600 text-sm mb-1"><strong>Fecha:</strong> ${meeting.date}</p>
+                    <p class="text-slate-600 text-sm mb-4"><strong>Hora:</strong> ${meeting.time}</p>
+                    <div class="mt-auto">
+                        <a href="${meeting.link}" target="_blank" rel="noopener noreferrer" class="inline-block w-full text-center bg-blue-500 text-white font-semibold px-4 py-2 rounded-md hover:bg-blue-600 transition-colors duration-300">
+                            Unirse a la Reunión
+                        </a>
+                    </div>
                 `;
                 meetingsList.appendChild(meetingItem);
             });
@@ -400,18 +160,21 @@
 
         /**
          * Dynamically loads event items from the config object into the HTML.
+         * Items are styled with Tailwind CSS classes.
          */
         function loadEvents() {
             const eventsList = document.getElementById('events-list');
+            if (!eventsList) return;
             eventsList.innerHTML = ''; // Clear existing content
 
             config.events.forEach(event => {
                 const eventItem = document.createElement('div');
-                eventItem.classList.add('event-item');
+                // Consistent card styling with meetings
+                eventItem.className = 'bg-white rounded-lg shadow-sm border border-slate-200 p-6 flex flex-col';
                 eventItem.innerHTML = `
-                    <strong>${event.title}</strong>
-                    <p>Fecha: ${event.date}</p>
-                    <p>${event.description}</p>
+                    <h3 class="font-bold text-lg text-slate-900 mb-2">${event.title}</h3>
+                    <p class="text-slate-600 text-sm mb-3"><strong>Fecha:</strong> ${event.date}</p>
+                    <p class="text-slate-600 text-sm flex-grow">${event.description}</p>
                 `;
                 eventsList.appendChild(eventItem);
             });
